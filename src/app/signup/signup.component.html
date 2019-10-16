@@ -63,7 +63,7 @@
 
             <div class="form_group">
                 <label for="usertypes">User Types<span style="color:red;">*</span></label>
-                <select  required class="custom-select" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.usertype'>
+                <select  required class="custom-select" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.type'>
                     <option value=""></option>
                     <option *ngFor="let type of userTypes">{{type}}</option>
                 </select>
