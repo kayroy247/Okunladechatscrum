@@ -61,7 +61,7 @@ form {
 }
 
 .btn-disabled{
-    cursor: not-allowed;
+    cursor: not-allowed !important;
     pointer-events: none;
     background: grey;
 }
