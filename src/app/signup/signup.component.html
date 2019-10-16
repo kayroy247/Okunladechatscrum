@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <h2>Create A New Account</h2>
+ <!-- {{userSignupForm.value | json}}
+
+ <hr>
+ <br>
+ {{scrumUserModel | json }}
+ <br> -->
+
+  <form #userSignupForm='ngForm' novalidate (ngSubmit)="onSubmit()">
+      <div class="form_group">
+          <label for="email">Email<span style="color:red;">*</span></label>
+          <input required type="email" 
+          pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{3,}" name="email" [class.is-invalid]="email.invalid && email.touched" class="form-control" #email='ngModel' [(ngModel)]='scrumUserModel.email'>
+         
+            <div *ngIf="email.errors && (email.invalid || email.touched)">
+                <small class="text-danger" *ngIf="email.errors.required">
+                 Email is required
+                </small>
+                <small class="text-danger" *ngIf="email.errors.pattern">
+                        Please provide a valid email.
+                       </small>
+
+            </div>
+         
+         
+         
+         
+          <!-- <small class="text-danger" [class.d-none]='email.valid || email.untouched'>Email is required</small> -->
+      </div>
+
+      <div class="form_group">
+            <label for="fullname">Fullname<span style="color:red;">*</span></label>
+            <input type="text" required name="fullname" class="form-control" 
+            pattern="(?=^.{0,40}$)^[a-zA-Z-]+\s[a-zA-Z-]+$" #fullname='ngModel' [(ngModel)]='scrumUserModel.fullname'>
+
+            <div *ngIf="fullname.errors && (fullname.invalid || fullname.touched)">
+                    <small class="text-danger" *ngIf="fullname.errors.required">
+                     Fullname is required
+                    </small>
+                    <small class="text-danger" *ngIf="fullname.errors.pattern">
+                            Please provide valid full name.
+                           </small>
+    
+                </div>
+  
+        </div>
+
+        <div class="form_group">
+                <label for="password">Password <span style="color:red;">*</span></label>
+                <input  required type="password" #password='ngModel' [class.is-invalid]="password.invalid && password.touched" 
+                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="password" class="form-control" [(ngModel)]='scrumUserModel.password'>
+                <div *ngIf="password.errors && (password.invalid || password.touched)">
+                    <small class="text-danger" *ngIf="password.errors.required">
+                     Password is required
+                    </small>
+                    <small class="text-danger" *ngIf="password.errors.pattern">
+                            Password must be at least 8 characters, <br> one special character, and a number.
+                           </small>
+
+                </div>
+            </div>
+
+            <div class="form_group">
+                <label for="usertypes">User Types<span style="color:red;">*</span></label>
+                <select  required class="custom-select" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.usertype'>
+                    <option value=""></option>
+                    <option *ngFor="let type of userTypes">{{type}}</option>
+                </select>
+
+            </div>
+            <br>
+            <button class="btn btn-primary" [class.btn-disabled]="email.errors || password.errors || fullname.errors || usertype.errors" type="submit">Create User</button>
+  </form>
+</div>
