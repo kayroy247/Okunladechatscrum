@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   }
   scrumUserModel = {
     email: 'okunlade@gmail.com', 
-    password: 'todolist',
-    projname: 'dladjfdda5#fffsfffffffff'
+    password: 'todolist@3',
+    projname: 'zender'
   }
 }
