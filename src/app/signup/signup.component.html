@@ -32,6 +32,7 @@
       <div class="form_group">
             <label for="fullname">Fullname<span style="color:red;">*</span></label>
             <input type="text" required name="fullname" class="form-control" 
+            [class.is-invalid]="fullname.invalid && fullname.touched"
             pattern="(?=^.{0,40}$)^[a-zA-Z-]+\s[a-zA-Z-]+$" #fullname='ngModel' [(ngModel)]='scrumUserModel.fullname'>
 
             <div *ngIf="fullname.errors && (fullname.invalid || fullname.touched)">
@@ -63,10 +64,15 @@
 
             <div class="form_group">
                 <label for="usertypes">User Types<span style="color:red;">*</span></label>
-                <select  required class="custom-select" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.type'>
-                    <option value=""></option>
+                <select  required class="custom-select" [class.is-invalid]="usertype.invalid && usertype.touched" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.type'>
+                    <option value="">Please Select User Type</option>
                     <option *ngFor="let type of userTypes">{{type}}</option>
+
                 </select>
+                
+                <small class="text-danger" *ngIf="usertype.errors">
+                        User type is required
+                       </small>
 
             </div>
             <br>

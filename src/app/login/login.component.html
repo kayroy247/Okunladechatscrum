@@ -44,8 +44,15 @@
 
                   <div class="form_group">
                         <label for="projectname">Project Name</label>
-                        <input type="text" class="form-control">
-              
+                        <input type="text" required name="projectname" class="form-control" 
+                         #projname='ngModel' [(ngModel)]='scrumUserModel.projname' [class.is-invalid]="projname.invalid && projname.touched">
+            
+                        <div *ngIf="projname.errors && (projname.invalid || projname.touched)">
+                                <small class="text-danger" *ngIf="projname.errors.required">
+                                 Project Name is required
+                                </small>
+                
+                        </div>
                     </div>
       
                   
