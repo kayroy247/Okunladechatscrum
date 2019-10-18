@@ -18,7 +18,7 @@ export class ScrumdataService {
 
   signup(user: Scrumuser) {
     return this._http.post<any>(this._url, {'email': user['email'], 'password': user['password'],
-  'full_name': user['fullname'], 'usertype': user['usertype'], 'projname': user['projname']}, this.httpOptions)
+  'full_name': user['fullname'], 'usertype': user['type'], 'projname': user['projname']}, this.httpOptions)
   }
 
 
