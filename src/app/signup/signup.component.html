@@ -9,7 +9,7 @@
           pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{3,}" name="email" [class.is-invalid]="email.invalid && email.touched" class="form-control" #email='ngModel' [(ngModel)]='scrumUserModel.email'>
          
             <div *ngIf="email.errors && (email.invalid || email.touched)">
-                <small class="text-danger" *ngIf="email.errors.required">
+                <small class="text-danger" *ngIf="email.errors.required && email.touched">
                  Email is required
                 </small>
                 <small class="text-danger" *ngIf="email.errors.pattern">
@@ -31,11 +31,11 @@
             pattern="(?=^.{0,40}$)^[a-zA-Z-]+\s[a-zA-Z-]+$" #fullname='ngModel' [(ngModel)]='scrumUserModel.fullname'>
 
             <div *ngIf="fullname.errors && (fullname.invalid || fullname.touched)">
-                    <small class="text-danger" *ngIf="fullname.errors.required">
+                    <small class="text-danger" *ngIf="fullname.errors.required && fullname.touched">
                      Fullname is required
                     </small>
                     <small class="text-danger" *ngIf="fullname.errors.pattern">
-                            Please provide valid full name.
+                            Please provide valid full name separated by single space
                            </small>
     
                 </div>
@@ -47,7 +47,7 @@
                 <input  required type="password" #password='ngModel' [class.is-valid]="password.valid" [class.is-invalid]="password.invalid && password.touched" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="password" class="form-control" [(ngModel)]='scrumUserModel.password'>
                 <div *ngIf="password.errors && (password.invalid || password.touched)">
-                    <small class="text-danger" *ngIf="password.errors.required">
+                    <small class="text-danger" *ngIf="password.errors.required && password.touched">
                      Password is required
                     </small>
                     <small class="text-danger" *ngIf="password.errors.pattern">
@@ -65,7 +65,7 @@
 
                 </select>
                 
-                <small class="text-danger" *ngIf="usertype.errors">
+                <small class="text-danger" *ngIf="usertype.errors && usertype.touched">
                         User type is required
                        </small>
 
