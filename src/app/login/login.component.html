@@ -1,15 +1,11 @@
 <div class="container-fluid">
         <h2>Login</h2>
-      
-
-        <br>
- {{scrumUserModel | json }}
- <br>
-        <form #userLoginForm='ngForm' novalidate >
+        {{feedback}}
+        <form #userLoginForm='ngForm' (ngSubmit)="onLoginSubmit()" novalidate >
                 <div class="form_group">
                         <label for="email">Email</label>
                         <input required type="email" 
-                        pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{3,}" name="email" [class.is-invalid]="email.invalid && email.touched" class="form-control" #email='ngModel' [(ngModel)]='scrumUserModel.email'>
+                        pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{3,}" name="email" [class.is-invalid]="email.invalid && email.touched" class="form-control" #email='ngModel' [(ngModel)]='scrumUserLoginData.email'>
                        
                           <div *ngIf="email.errors && (email.invalid || email.touched)">
                               <small class="text-danger" *ngIf="email.errors.required">
@@ -30,7 +26,7 @@
                     <div class="form_group">
                             <label for="password">Password</label>
                             <input  required type="password" #password='ngModel' [class.is-invalid]="password.invalid && password.touched" 
-                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="password" class="form-control" [(ngModel)]='scrumUserModel.password'>
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="password" class="form-control" [(ngModel)]='scrumUserLoginData.password'>
                             <div *ngIf="password.errors && (password.invalid || password.touched)">
                                 <small class="text-danger" *ngIf="password.errors.required">
                                  Password is required
@@ -45,7 +41,7 @@
                   <div class="form_group">
                         <label for="projectname">Project Name</label>
                         <input type="text" required name="projectname" class="form-control" 
-                         #projname='ngModel' [(ngModel)]='scrumUserModel.projname' [class.is-invalid]="projname.invalid && projname.touched">
+                         #projname='ngModel' [(ngModel)]='scrumUserLoginData.projname' [class.is-invalid]="projname.invalid && projname.touched">
             
                         <div *ngIf="projname.errors && (projname.invalid || projname.touched)">
                                 <small class="text-danger" *ngIf="projname.errors.required">
@@ -58,6 +54,8 @@
                   
                   <br>
                   <button class="btn btn-primary"  type="submit">Login</button>
+                  Don't have an account? <a routerLink='/signup'>Register</a>
         </form>
+
       </div>
       

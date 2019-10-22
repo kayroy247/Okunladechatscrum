@@ -1,16 +1,11 @@
 <div class="container-fluid">
   <h2>Create A New Account</h2>
- {{userSignupForm.value | json}}
-
- <hr>
- <br>
- {{scrumUserModel | json }}
- <br>
+{{feedback}}
 
   <form #userSignupForm='ngForm' novalidate (ngSubmit)="onSubmit()">
       <div class="form_group">
           <label for="email">Email<span style="color:red;">*</span></label>
-          <input required type="email" 
+          <input required type="email" [class.is-valid]="email.valid"
           pattern="[a-zA-Z0-9.-]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{3,}" name="email" [class.is-invalid]="email.invalid && email.touched" class="form-control" #email='ngModel' [(ngModel)]='scrumUserModel.email'>
          
             <div *ngIf="email.errors && (email.invalid || email.touched)">
@@ -31,7 +26,7 @@
 
       <div class="form_group">
             <label for="fullname">Fullname<span style="color:red;">*</span></label>
-            <input type="text" required name="fullname" class="form-control" 
+            <input type="text" required name="fullname" class="form-control" [class.is-valid]="fullname.valid"
             [class.is-invalid]="fullname.invalid && fullname.touched"
             pattern="(?=^.{0,40}$)^[a-zA-Z-]+\s[a-zA-Z-]+$" #fullname='ngModel' [(ngModel)]='scrumUserModel.fullname'>
 
@@ -49,7 +44,7 @@
 
         <div class="form_group">
                 <label for="password">Password <span style="color:red;">*</span></label>
-                <input  required type="password" #password='ngModel' [class.is-invalid]="password.invalid && password.touched" 
+                <input  required type="password" #password='ngModel' [class.is-valid]="password.valid" [class.is-invalid]="password.invalid && password.touched" 
                 pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" name="password" class="form-control" [(ngModel)]='scrumUserModel.password'>
                 <div *ngIf="password.errors && (password.invalid || password.touched)">
                     <small class="text-danger" *ngIf="password.errors.required">
@@ -64,7 +59,7 @@
 
             <div class="form_group">
                 <label for="usertypes">User Types<span style="color:red;">*</span></label>
-                <select  required class="custom-select" [class.is-invalid]="usertype.invalid && usertype.touched" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.type'>
+                <select  required class="custom-select" [class.is-valid]="usertype.valid" [class.is-invalid]="usertype.invalid && usertype.touched" #usertype='ngModel' name="usertype" [(ngModel)]='scrumUserModel.type'>
                     <option value="">Please Select User Type</option>
                     <option *ngFor="let type of userTypes">{{type}}</option>
 
@@ -77,5 +72,6 @@
             </div>
             <br>
             <button class="btn btn-primary" [class.btn-disabled]="email.errors || password.errors || fullname.errors || usertype.errors" type="submit">Create User</button>
-  </form>
+            Already have an account? <a routerLink='/login'>Login</a>
+        </form>
 </div>

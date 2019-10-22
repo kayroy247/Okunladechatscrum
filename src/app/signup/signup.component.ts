@@ -13,14 +13,22 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
   }
-  userTypes = ['regular user', 'project owner'];
-  scrumUserModel = new Scrumuser('Kayode Okunlade', 'okunladekayode@gmail.com', 'okunlade$4', 'regular user', 'politico');
-
+  userTypes = ['regular user', 'Owner'];
+  scrumUserModel = new Scrumuser('Kayode Okunlade', 'okunladekayode@gmail.com', 'okunlade$4', 'regular user', 'universal1');
+  feedback ='';
 onSubmit(){
   console.log(this.scrumUserModel);
   this._ScrumdataService.signup(this.scrumUserModel).subscribe(
-    data => console.log('Success', data),
-    error => console.error('Error', error)
+    data => {
+      console.log('Success', data);
+      this.feedback = 'Account Created Successfully'
+    },
+    error => { 
+      console.error('Error', error);
+      this.feedback = 'Signup Failed'
+    }
+
+
   )
 }
 
