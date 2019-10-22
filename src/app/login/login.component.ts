@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-scrumUserLoginData = {};
+scrumUserLoginData = {email:'', password: '', projname: ''};
   constructor(private _scrumdataService: ScrumdataService, private _router: Router) { }
 feedback = ""
   ngOnInit() {
